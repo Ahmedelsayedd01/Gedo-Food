@@ -103,7 +103,7 @@ const HomePage = () => {
                   <FooterCard title={"Top Selling Products"} link="/dashboard/setup_product/product" layout={"TopSelling"} topCustomers={topCustomers} topSelling={topSelling} offers={offers} />
                   {/* <FooterCard title={"Most Rated Products"} link="/dashboard/setup_product/product" /> */}
                   <FooterCard title={"Deals"} link="/dashboard/deals" layout={"Deals"} topCustomers={topCustomers} topSelling={topSelling} offers={offers} />
-                  <FooterCard title={"Top Customer"} link="/dashboard/customers/customers_list" layout={"default"} topCustomers={topCustomers} topSelling={topSelling} offers={offers} />
+                  <FooterCard title={"Top Customer"} link="/dashboard/users/customers" layout={"default"} topCustomers={topCustomers} topSelling={topSelling} offers={offers} />
                 </div>
               </div>
             </div>
