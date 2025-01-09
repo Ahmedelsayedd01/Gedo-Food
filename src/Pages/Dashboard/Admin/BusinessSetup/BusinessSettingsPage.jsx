@@ -380,9 +380,13 @@ const BusinessSettingsPage = () => {
       week: forWeek,
       until_change: untilChange,
       customize: Customize,
-      start_date: startDate,
-      end_date: endDate
     };
+
+    if (Customize === 1) {
+      updatedData.start_date = startDate;
+      updatedData.end_date = endDate;
+    }
+
 
 
 
@@ -449,7 +453,7 @@ const BusinessSettingsPage = () => {
     }
 
 
-    postData(formData, "Branch Added Success");
+    postData(formData, "Business Setup Success");
     console.log("all data ", formData)
   };
 
@@ -563,6 +567,9 @@ const BusinessSettingsPage = () => {
     setForWeek(0);
     setUntilChange(0);
     setCustomize(0);
+
+    setStartDate(startDate || '')
+    setEndDate(endDate || '')
   };
   const handleClickForWeek = (e) => {
     const isChecked = e.target.checked;
@@ -570,6 +577,9 @@ const BusinessSettingsPage = () => {
     setForWeek(isChecked ? 1 : 0);
     setUntilChange(0);
     setCustomize(0);
+
+    setStartDate(startDate || '')
+    setEndDate(endDate || '')
   };
   const handleClickUntilChange = (e) => {
     const isChecked = e.target.checked;
@@ -577,6 +587,11 @@ const BusinessSettingsPage = () => {
     setForWeek(0);
     setUntilChange(isChecked ? 1 : 0);
     setCustomize(0);
+
+    setStartDate(startDate || '')
+    setEndDate(endDate || '')
+    console.log(startDate)
+    console.log(endDate)
   };
   const handleClickCustomize = (e) => {
     const isChecked = e.target.checked;
@@ -584,6 +599,9 @@ const BusinessSettingsPage = () => {
     setForWeek(0);
     setUntilChange(0);
     setCustomize(isChecked ? 1 : 0);
+
+    setStartDate(startDate || '')
+    setEndDate(endDate || '')
   };
 
   // Logo handler
@@ -1018,36 +1036,42 @@ const BusinessSettingsPage = () => {
                   />
                 </div>
               </div>
-              {/* Start Date */}
-              <div className="sm:w-full xl:w-[30%] flex items-center justify-start gap-3">
-                <span className="text-xl font-TextFontRegular text-thirdColor">
-                  Start Date:
-                </span>
-                <div>
-                  <DateInput
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                    maxDate={false}
-                    minDate={true}
-                  />
-                </div>
-              </div>
-              {/* End Date */}
-              <div className="sm:w-full xl:w-[30%] flex items-center justify-start gap-3">
-                <span className="text-xl font-TextFontRegular text-thirdColor">
-                  End Date:
-                </span>
-                <div>
-                  <DateInput
-                    value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                    maxDate={false}
-                    minDate={true}
-                  />
-                </div>
-              </div>
+              {Customize === 1 && (
+
+                <>
+                  {/* Start Date */}
+                  <div className="sm:w-full xl:w-[30%] flex items-center justify-start gap-3">
+                    <span className="text-xl font-TextFontRegular text-thirdColor">
+                      Start Date:
+                    </span>
+                    <div>
+                      <DateInput
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        maxDate={false}
+                        minDate={true}
+                      />
+                    </div>
+                  </div>
+                  {/* End Date */}
+                  <div className="sm:w-full xl:w-[30%] flex items-center justify-start gap-3">
+                    <span className="text-xl font-TextFontRegular text-thirdColor">
+                      End Date:
+                    </span>
+                    <div>
+                      <DateInput
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                        maxDate={false}
+                        minDate={true}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
             </>
-          )}
+          )
+          }
 
           {/* Buttons */}
           <div className="w-full flex items-center justify-end gap-x-4 mb-32">
@@ -1070,7 +1094,7 @@ const BusinessSettingsPage = () => {
               />
             </div>
           </div>
-        </form>
+        </form >
       )}
     </>
   );
