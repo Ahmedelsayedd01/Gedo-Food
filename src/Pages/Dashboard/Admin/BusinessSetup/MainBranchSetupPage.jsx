@@ -401,17 +401,16 @@ const CustomTimeInput = ({ value, onChange }) => {
        const handleTimeChange = (type, newValue) => {
               const [currentHours, currentMinutes] = value.split(':');
               const updatedTime = type === 'hours'
-                     ? `${newValue}:${currentMinutes}` // Correct format
-                     : `${currentHours}:${newValue}`;  // Correct format
-              onChange(updatedTime);
+                     ? `${newValue}: ${currentMinutes}`
+                     : `${currentHours}: ${newValue}`;
+              onChange(updatedTime);  // Ensure value is always in HH:mm format
        };
 
        return (
               <div className="flex gap-2 mt-3">
                      <span className="text-xl font-TextFontRegular text-thirdColor">
                             Hours:
-                     </span>
-                     <select
+                     </span><select
                             value={value.split(':')[0]}  // Get hours part from the value
                             onChange={(e) => handleTimeChange('hours', e.target.value)}
                             className="border rounded px-2 py-1"

@@ -43,9 +43,6 @@ const LoginPage = () => {
     if (response) {
       console.log('response', response)
 
-      dispatch(setUser(response.data.admin))
-
-
       auth.login(response.data.admin)
 
       navigate("/dashboard", { replace: true });

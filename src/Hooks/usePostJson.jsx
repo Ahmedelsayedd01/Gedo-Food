@@ -5,19 +5,20 @@ import { useSelector } from "react-redux";
 
 export const usePost = ({ url, login = false, type = false }) => {
        const auth = useAuth();
-       const user = useSelector(state => state.user)
+       const user = useSelector(state => state.userGedo);
        const [loadingPost, setLoadingPost] = useState(false);
        const [response, setResponse] = useState(null);
 
        const postData = async (data, name) => {
               setLoadingPost(true);
               try {
+                     const token = auth?.userState?.token || '';
                      const contentType = type ? 'application/json' : 'multipart/form-data';
-                     const config = !login && user?.token
+                     const config = !login && token
                             ? {
                                    headers: {
                                           'Content-Type': contentType,
-                                          'Authorization': `Bearer ${user?.token || ''}`,
+                                          'Authorization': `Bearer ${token || ''}`,
                                    },
                             }
                             : {
